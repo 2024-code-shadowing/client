@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './tailwind.css';
 import CodeShadowingPage from './CodeShadowingPage'; // CodeShadowingPage를 import합니다.
 import reportWebVitals from './reportWebVitals';
 

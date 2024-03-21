@@ -1,13 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import CodeShadowingPage from './CodeShadowingPage'; // CodeShadowingPage를 import합니다.
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <CodeShadowingPage /> {/* CodeShadowingPage 컴포넌트를 렌더링합니다. */}
   </React.StrictMode>
 );
 

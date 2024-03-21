@@ -15,7 +15,7 @@ function StartScreen(){
                 font-press-start-2p text-basic-blue">
                     start
                 </div>
-                <div className="text-6xl p-8 px-14
+                <div className="text-6xl p-8 px-16
                 border-8 border-t-neutral-200 border-l-neutral-300 border-b-neutral-900 border-r-neutral-800 bg-neutral-400
                 hover:border-t-neutral-900 hover:border-l-neutral-800 hover:border-b-neutral-200 hover:border-r-neutral-300 hover:bg-neutral-500 hover:text-hoverd-blue
                 active:text-clicked-blue

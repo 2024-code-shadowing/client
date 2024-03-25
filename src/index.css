@@ -12,9 +12,68 @@ code {
     monospace;
 }
 
-.drag-none{
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none
+.drag-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
 }
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* background-color: rgba(255, 255, 255, 0.9); */
+  /* 배경을 반투명하게 만듭니다. */
+  width: 80%;
+  /* 모달의 너비 */
+  max-width: 450px;
+  /* 최대 너비 */
+  /* padding: 20px; */
+  /* border: 3px solid #000; */
+  /* 테두리 스타일 */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  /* 그림자 효과 */
+  z-index: 10;
+  /* 다른 요소보다 위에 나타나도록 설정합니다. */
+  /* border-radius: 10px; */
+  /* 모달의 모서리를 둥글게 만듭니다. */
+}
+
+/* 모달 내부 컨텐츠 스타일링 */
+/* .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* SpeedAccuracyDisplay 컴포넌트 스타일링 */
+.speed-accuracy-display {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Button 컴포넌트 스타일링 */
+/* .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 20px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #000;
+  color: #fff;
+} */

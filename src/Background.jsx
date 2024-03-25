@@ -15,6 +15,7 @@ function FullPageBackground({ page_type }) {
             break;
         case "rank":
             width = "w-1/3"
+            break;
     }
 
     console.log(width);
@@ -26,7 +27,6 @@ function FullPageBackground({ page_type }) {
                 {page_type === "start" && <StartScreen />}
                 {page_type === "title" && <TitleScreen />}
                 {page_type === "typing" && <TypingScreen />}
-                {/* {page_type === "typing"} */}
             </section>
         </main>
     );

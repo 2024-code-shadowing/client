@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PageRenderer from "./Background"
+import PageRenderer from "./Background";
+import Modal from './Modal';
 
 const contents = {
     title: "title 1",
     page: 1,
     contents: "#define _CRT_SECURE_NO_WARNINGS\n#include <stdio.h>\nint main(){\n\treturn 0;\n}\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd\nd"
-}
+};
 
 const maxInputLength = contents.contents.length;
 
@@ -15,12 +16,14 @@ function TypingScreen() {
     const [speed, setSpeed] = useState(0);
     const [startTime, setStartTime] = useState(null);
     const [typedCharacters, setTypedCharacters] = useState(0);
-    const [inputCompleted, setInputCompleted] = useState(false); // 입력 완료 여부 추가
+    const [inputCompleted, setInputCompleted] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+
+    const textareaRef = useRef(null);
 
     useEffect(() => {
-        // 코드와 사용자 입력 비교하여 정확성 계산
-        const code = contents.contents.replace(/\s+/g, ''); // 공백 제거
-        const userCode = userInput.replace(/\s+/g, ''); // 공백 제거
+        const code = contents.contents.replace(/\s+/g, '');
+        const userCode = userInput.replace(/\s+/g, '');
         const codeLength = code.length;
 
         let incorrectCharacters = 0;
@@ -33,18 +36,14 @@ function TypingScreen() {
         const newAccuracy = ((codeLength - incorrectCharacters) / codeLength) * 100;
         setAccuracy(newAccuracy);
 
-        // 타자 속도 계산
-        const elapsedTime = (Date.now() - startTime) / 60000; // 분 단위로 변환
+        const elapsedTime = (Date.now() - startTime) / 60000;
         const typedSpeed = typedCharacters / elapsedTime;
-        setSpeed(typedSpeed.toFixed(2)); // 소수점 둘째 자리까지 표시
+        setSpeed(typedSpeed.toFixed(2));
 
-        // 입력이 완료되면 current_speed 측정을 멈추기
         if (userInput.length === maxInputLength) {
             setInputCompleted(true);
         }
     }, [userInput, typedCharacters, startTime, maxInputLength]);
-
-    const textareaRef = useRef(null);
 
     const handleChange = (e) => {
         const { value } = e.target;
@@ -52,14 +51,14 @@ function TypingScreen() {
             setUserInput(value);
             setTypedCharacters(value.length);
             if (!startTime) {
-                setStartTime(Date.now()); // 타이핑 시작 시간 설정
+                setStartTime(Date.now());
             }
         }
     };
 
     const handleKeyDown = (e) => {
         if (e.key === 'Tab') {
-            e.preventDefault(); // 기본 동작 막기
+            e.preventDefault();
             const { selectionStart, selectionEnd } = e.target;
             setUserInput(prevInput => prevInput.substring(0, selectionStart) + '\t' + prevInput.substring(selectionEnd));
         }
@@ -93,20 +92,26 @@ function TypingScreen() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (startTime && !inputCompleted) { // 입력이 완료되지 않았을 때만 타자 속도 업데이트
-                const elapsedTime = (Date.now() - startTime) / 60000; // 분 단위로 변환
+            if (startTime && !inputCompleted) {
+                const elapsedTime = (Date.now() - startTime) / 60000;
                 const typedSpeed = typedCharacters / elapsedTime;
-                setSpeed(typedSpeed.toFixed(2)); // 소수점 둘째 자리까지 표시
+                setSpeed(typedSpeed.toFixed(2));
             }
-        }, 100); // 0.1초마다 업데이트
+        }, 100);
 
         return () => clearInterval(interval);
     }, [startTime, typedCharacters, inputCompleted]);
 
+    useEffect(() => {
+        if (inputCompleted) {
+            setShowModal(true);
+        }
+    }, [inputCompleted]);
+
     return (
         <div className="flex flex-col w-full h-full border border-black border-solid bg-neutral-400" onClick={handleClick}>
             <div className="flex justify-between items-center w-full h-1/10 p-2 border border-black border-solid bg-neutral-400">
-                <div></div> {/* 이 부분은 go_back 버튼을 왼쪽 끝에 고정하기 위한 공간입니다 */}
+                <div></div>
                 <h1 className="text-center flex-gro text-3xl text-basic-blue">{contents.title}</h1>
                 <PageRenderer page_type="go_back" />
             </div>
@@ -135,8 +140,10 @@ function TypingScreen() {
                     Accuracy: {accuracy.toFixed(2)} %
                 </div>
             </div>
+            {showModal && <Modal speed={speed} accuracy={accuracy} closeModal={() => setShowModal(false)} />}
         </div>
     );
 }
 
 export default TypingScreen;
+

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import PageRenderer from "./Background"
 
 const TitleLine = ({ title, line }) => (
   <div className="flex text-basic-blue gap-0 max-md:flex-wrap max-md:max-w-full">
@@ -60,16 +60,7 @@ function TitleScreen() {
 
   return (
     <div className="flex flex-col w-full h-full border border-black border-solid bg-neutral-400">
-      <div className="flex justify-end items-center w-full h-1/10 p-2 border border-black border-solid bg-neutral-400">
-        <button
-          className="text-2xl justify-center items-center uppercase pt-1 pe-1 ps-1.5 text-center
-            border-4 border-t-neutral-200 border-l-neutral-300 border-b-neutral-900 border-r-neutral-800 bg-neutral-400
-            hover:border-t-red-950 hover:border-l-red-900 hover:border-b-red-300 hover:border-r-red-400 hover:bg-btn-bg-red hover:text-black
-            active:border-t-red-950 active:border-l-red-900 active:border-b-red-300 active:border-r-red-400 active:text-white"
-          onClick={() => window.history.back()}>
-          x
-        </button>
-      </div>
+      <PageRenderer page_type="go_back" />
       <div>
         {visibleTitleLines.map(({ title, line }) => (
           <TitleLine key={title} title={title} line={line} />

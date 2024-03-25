@@ -1,16 +1,31 @@
 import React, { useState } from "react";
 import PageRenderer from "./Background"
 
-const TitleLine = ({ title, line }) => (
+const titleLines = [];
+
+for (let i = 1; i <= 50; i++) {
+  const title = `title ${i.toString().padStart(2, '0')}`;
+  const line = "xxx LINE";
+  const id = i;
+  titleLines.push({ title, line });
+}
+
+const TitleLine = ({ title, line, id }) => (
   <div className="flex text-basic-blue gap-0 max-md:flex-wrap max-md:max-w-full">
-    <button className="grow justify-center items-center px-16 py-5 text-2xl border border-black border-solid bg-neutral-400 w-fit max-md:px-5 max-md:max-w-full hover:bg-btn-bg-red hover:text-btn-bg-yellow active:bg-btn-bg-yellow active:text-btn-bg-red">
+    <button className="flex-grow justify-center items-center px-16 py-5 text-2xl
+      border border-black border-solid bg-neutral-400 max-md:max-w-full
+      hover:bg-btn-bg-red hover:text-btn-bg-yellow
+      active:bg-btn-bg-yellowactive:text-btn-bg-red"
+      onClick={() => { window.location.href = `/typing/${id}`; }}>
       {title}
     </button>
-    <div className="justify-center px-12 py-5 text-2xl border border-black border-solid bg-neutral-400 w-fit max-md:px-5">
+    <div className="justify-center px-12 py-5 text-2xl
+    border border-black border-solid bg-neutral-400 w-fit max-md:px-5">
       {line}
     </div>
-  </div>
+  </div >
 );
+
 
 const color_lt_gt = "active:text-white active:bg-black";
 
@@ -36,14 +51,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => (
   </div>
 );
 
-const titleLines = [];
-
-for (let i = 1; i <= 50; i++) {
-  const title = `title ${i.toString().padStart(2, '0')}`;
-  const line = "xxx LINE";
-  titleLines.push({ title, line });
-}
-
 const titleLinesPerPage = 8;
 const totalPages = Math.ceil(titleLines.length / titleLinesPerPage);
 
@@ -60,7 +67,9 @@ function TitleScreen() {
 
   return (
     <div className="flex flex-col w-full h-full border border-black border-solid bg-neutral-400">
-      <PageRenderer page_type="go_back" />
+      <div className="flex justify-end items-center w-full h-1/10 p-2 border border-black border-solid bg-neutral-400">
+        <PageRenderer page_type="go_back" />
+      </div>
       <div>
         {visibleTitleLines.map(({ title, line }) => (
           <TitleLine key={title} title={title} line={line} />

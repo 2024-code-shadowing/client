@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PageRenderer page_type="start" />} />
         <Route path="/title" element={<PageRenderer page_type="title" />} />
+        <Route path="/typing/:id" element={<PageRenderer page_type="typing" />} />
       </Routes>
     </Router>
   );

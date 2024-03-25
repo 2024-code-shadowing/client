@@ -1,12 +1,14 @@
 import React from 'react';
 import StartScreen from './StartScreen';
+import TitleScreen from './TitleScreen';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function FullPageBackground({ page_type }){
     let width;
 
     switch(page_type){
         case "start":
-        case "chose":
+        case "title":
         case "typing":
             width = "w-3/5"
             break;
@@ -17,14 +19,12 @@ function FullPageBackground({ page_type }){
     console.log(width);
 
     return (
-        <main className="flex justify-center items-center min-h-screen bg-basic-blue">
+        <main className="flex justify-center drag-none items-center min-h-screen bg-basic-blue font-press-start-2p">
             {/* 큰창 출력 */} 
             <section className={`flex justify-center items-center ${width} h-[735px] border-8 border-t-neutral-200 border-l-neutral-300 border-b-neutral-900 border-r-neutral-800 bg-neutral-400`}>
-                {/* 시작 화면 */}
-                <StartScreen />
-                {/* 코드 선택 화면 */}
-                {/* 타이핑 화면 */}
-                {/* 랭크 화면 */}
+            {page_type === "start" && <StartScreen />}
+            {page_type === "title" && <TitleScreen />}
+            {/* {page_type === "typing"} */}
             </section>
         </main>
     );

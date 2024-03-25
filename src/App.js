@@ -1,24 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import StartScreen from './StartScreen';
+import TitleScreen from './TitleScreen';
+import FullPageBackground from './Background';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+          <Route path="/" element={<FullPageBackground page_type="start" />} />
+          <Route path="/title" element={<FullPageBackground page_type="title" />} />
+      </Routes>
+    </Router>
   );
 }
 

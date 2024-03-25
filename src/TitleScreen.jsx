@@ -17,7 +17,7 @@ const color_lt_gt = "active:text-white active:bg-black";
 const Pagination = ({ currentPage, totalPages, onPageChange }) => (
   <div className="pagination-container w-full h-16 flex text-3xl items-center justify-center border border-black border-solid">
     <button
-      className={`${color_lt_gt} ps-2`}
+      className={`${color_lt_gt} ms-2`}
       onClick={() => onPageChange(currentPage - 1)}
       disabled={currentPage === 1}
     >
@@ -27,7 +27,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => (
       {currentPage} / {totalPages}
     </div>
     <button
-      className={`${color_lt_gt} pe-2`}
+      className={`${color_lt_gt} me-2`}
       onClick={() => onPageChange(currentPage + 1)}
       disabled={currentPage === totalPages}
     >

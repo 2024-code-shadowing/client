@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PageRenderer from "./Background";
-import Modal from './Modal';
+import NextModal from './nextModal';
 
 const contents = {
     title: "title 1",
@@ -38,7 +38,7 @@ function TypingScreen() {
 
         const elapsedTime = (Date.now() - startTime) / 60000;
         const typedSpeed = typedCharacters / elapsedTime;
-        setSpeed(typedSpeed.toFixed(2));
+        setSpeed(Math.round(typedSpeed));
 
         if (userInput.length === maxInputLength) {
             setInputCompleted(true);
@@ -95,7 +95,7 @@ function TypingScreen() {
             if (startTime && !inputCompleted) {
                 const elapsedTime = (Date.now() - startTime) / 60000;
                 const typedSpeed = typedCharacters / elapsedTime;
-                setSpeed(typedSpeed.toFixed(2));
+                setSpeed(Math.round(typedSpeed));
             }
         }, 100);
 
@@ -140,7 +140,7 @@ function TypingScreen() {
                     Accuracy: {accuracy.toFixed(2)} %
                 </div>
             </div>
-            {showModal && <Modal speed={speed} accuracy={accuracy} closeModal={() => setShowModal(false)} />}
+            {showModal && <NextModal speed={speed} accuracy={accuracy} closeModal={() => setShowModal(false)} />}
         </div>
     );
 }

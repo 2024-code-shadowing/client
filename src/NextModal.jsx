@@ -11,7 +11,7 @@ function SpeedAccuracyDisplay({ speed, accuracy }) {
     );
 }
 
-function Modal({ speed, accuracy }) {
+function NextModal({ speed, accuracy }) {
     return (
         <div className="modal pt-5 border-8 border-t-neutral-200 border-l-neutral-300 border-b-neutral-900 border-r-neutral-800 bg-neutral-400">
             <div className="flex flex-col w-full h-full">
@@ -32,4 +32,4 @@ function Modal({ speed, accuracy }) {
 
 
 
-export default Modal;
+export default NextModal;

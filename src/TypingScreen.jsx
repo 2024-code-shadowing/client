@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PageRenderer from "./Background";
-import NextModal from './nextModal';
+import NextModal from './NextModal';
 
 const contents = {
     title: "title 1",

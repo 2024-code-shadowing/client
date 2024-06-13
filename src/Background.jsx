@@ -2,7 +2,6 @@ import React from 'react';
 import StartScreen from './StartScreen';
 import TitleScreen from './TitleScreen';
 import TypingScreen from './TypingScreen';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function FullPageBackground({ page_type }) {
     let width;
@@ -16,6 +15,7 @@ function FullPageBackground({ page_type }) {
         case "rank":
             width = "w-1/3"
             break;
+        default: width = "w-3/5"
     }
 
     console.log(width);

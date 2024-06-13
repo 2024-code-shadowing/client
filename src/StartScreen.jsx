@@ -12,7 +12,7 @@ function StartScreen() {
                 <Link to='/title'>
                     <Button type="start" />
                 </Link>
-                <Button type="rank" />
+                {/* <Button type="rank" /> */}
             </div>
         </section>
     );
